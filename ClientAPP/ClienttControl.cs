@@ -37,16 +37,12 @@ namespace ClientAPP
             Receive();
         }
 
-        public string Received1()
+        public string Received()
         {
             return msgrec;
         }
 
-        public string Received2()
-        {
-            msgrec = "";
-            return msgrec;
-        }
+       
 
         public void Send(string msg)
         {

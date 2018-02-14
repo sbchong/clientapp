@@ -13,6 +13,7 @@ namespace ClientAPP
     public partial class ChatForm : Form
     {
         ClientControl client = new ClientControl();
+        string onemsg = "";
 
         public ChatForm()
         {
@@ -21,20 +22,38 @@ namespace ClientAPP
 
         private void SendBtn_Click(object sender, EventArgs e)
         {
-            string msg,msgrec;
+            string msg, msgrec;
+            msg = msgrec = "";
             msg = SendTextBox.Text.Trim();
-            msgrec = client.Received2();
+            msgrec = client.Received();
+
             if (msg != "")
             {
+
                 client.Send(msg);
                 SendTextBox.Text = "";
-                ReceiveTextBox.Text += client.Received1() + Environment.NewLine;
+                if (msgrec != onemsg)
+                {
+                    ReceiveTextBox.Text += msgrec + Environment.NewLine;
+                    onemsg = msgrec;
+                }
+                else
+                {
+                }
             }
             else
             {
-                ReceiveTextBox.Text += client.Received1() + Environment.NewLine;
+                if (msgrec != onemsg)
+                {
+                    ReceiveTextBox.Text += msgrec + Environment.NewLine;
+                    onemsg = msgrec;
+                }
+                else
+                {
+                }
             }
         }
+ 
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
